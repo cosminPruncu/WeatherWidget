@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "main.css",
+	"sources": [
+		"../../_ui-src/sass/theme/main.scss"
+	],
+	"names": [],
+	"mappings": ""
+}
