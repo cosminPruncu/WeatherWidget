@@ -13,7 +13,8 @@ module.exports = function (grunt){
                 files: {
                     '_ui/js/main.js': [
                         // JS FILES HERE
-                        '_ui-src/js/script.js',
+                        '_ui-src/js/current-weather-info.js',
+                        '_ui-src/js/forecast-weather-info.js',
                         
                     ],
                     '_ui/js/vendor.js' : [
