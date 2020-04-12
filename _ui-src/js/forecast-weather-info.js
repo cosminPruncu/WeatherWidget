@@ -1,11 +1,11 @@
 var WEATHER = WEATHER ? WEATHER : {};
 
 WEATHER.forecast = {
-    bind: function () {
+    forecastInfo: function () {
         $.ajax({
             "async": true,
             "crossDomain": true,
-            "url": "http://api.openweathermap.org/data/2.5/forecast?q=cluj&units=metric&appid=c02f4b3cff27f9755aab3b1021f34040",
+            "url": `http://api.openweathermap.org/data/2.5/forecast?q=${WEATHER.info.$cityValue}&units=metric&appid=c02f4b3cff27f9755aab3b1021f34040`,
             "method": "GET",
             success: function (data) {
                 var firstForecast = data.list[0];
@@ -15,7 +15,6 @@ WEATHER.forecast = {
                 var fifthForecast = data.list[4];
                 var sixthForecast = data.list[5];
 
-
                 var firstDate = firstForecast.dt;
                 var secondDate = secondForecast.dt;
                 var thirdDate = thirdForecast.dt;
@@ -23,13 +22,19 @@ WEATHER.forecast = {
                 var fifthDate = fifthForecast.dt;
                 var sixthDate = sixthForecast.dt;
 
-                
-                $('.image-forecast-first').attr('src', `http://openweathermap.org/img/wn/${firstForecast.weather[0].icon}.png`);
-                $('.image-forecast-second').attr('src', `http://openweathermap.org/img/wn/${secondForecast.weather[0].icon}.png`);
-                $('.image-forecast-third').attr('src', `http://openweathermap.org/img/wn/${thirdForecast.weather[0].icon}.png`);
-                $('.image-forecast-fourth').attr('src', `http://openweathermap.org/img/wn/${fourthForecast.weather[0].icon}.png`);
-                $('.image-forecast-fifth').attr('src', `http://openweathermap.org/img/wn/${fifthForecast.weather[0].icon}.png`);
-                $('.image-forecast-sixth').attr('src', `http://openweathermap.org/img/wn/${sixthForecast.weather[0].icon}.png`);
+
+                $('.image-forecast-first').attr('src',
+                    `http://openweathermap.org/img/wn/${firstForecast.weather[0].icon}.png`);
+                $('.image-forecast-second').attr('src',
+                    `http://openweathermap.org/img/wn/${secondForecast.weather[0].icon}.png`);
+                $('.image-forecast-third').attr('src',
+                    `http://openweathermap.org/img/wn/${thirdForecast.weather[0].icon}.png`);
+                $('.image-forecast-fourth').attr('src',
+                    `http://openweathermap.org/img/wn/${fourthForecast.weather[0].icon}.png`);
+                $('.image-forecast-fifth').attr('src',
+                    `http://openweathermap.org/img/wn/${fifthForecast.weather[0].icon}.png`);
+                $('.image-forecast-sixth').attr('src',
+                    `http://openweathermap.org/img/wn/${sixthForecast.weather[0].icon}.png`);
 
 
                 $('.first-hour').text(WEATHER.converter.unixConverter(firstDate));
@@ -52,10 +57,5 @@ WEATHER.forecast = {
                 console.log(data);
             }
         });
-    },
+    }
 }
-
-$(document).ready(function () {
-    WEATHER.forecast.bind();
-});
-

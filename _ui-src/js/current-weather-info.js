@@ -1,13 +1,14 @@
 var WEATHER = WEATHER ? WEATHER : {};
 
 WEATHER.info = {
+    $cityValue : "",
     bindSearchOnClick: function () {
         $('.search-city-btn').on('click', function () {
-            var $cityValue = $('.search-city-name').val();
+            WEATHER.info.$cityValue = $('.search-city-name').val();
             $.ajax({
                 "async": true,
                 "crossDomain": true,
-                "url": `http://api.openweathermap.org/data/2.5/weather?q=${$cityValue}&units=metric&appid=c02f4b3cff27f9755aab3b1021f34040`,
+                "url": `http://api.openweathermap.org/data/2.5/weather?q=${WEATHER.info.$cityValue}&units=metric&appid=c02f4b3cff27f9755aab3b1021f34040`,
                 "method": "GET",
                 success: function (data) {
                     var $weatherInfo = data.weather[0];
@@ -15,7 +16,6 @@ WEATHER.info = {
 
                     var utcSunset = data.sys.sunset;
                     var utcSunrise = data.sys.sunrise;
-
 
                     console.log(data);
                     $('.city-name').text(data.name);
@@ -26,13 +26,13 @@ WEATHER.info = {
                     $('.weather-description').text($weatherInfo.description);
                     $('.sunset').text(WEATHER.converter.unixConverter(utcSunset));
                     $('.sunrise').text(WEATHER.converter.unixConverter(utcSunrise));
+                    WEATHER.forecast.forecastInfo();
                 },
                 error: function (data) {
                     console.log(data);
                 }
             });
         });
-
     },
 }
 
