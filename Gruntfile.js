@@ -15,6 +15,8 @@ module.exports = function (grunt){
                         // JS FILES HERE
                         '_ui-src/js/current-weather-info.js',
                         '_ui-src/js/forecast-weather-info.js',
+                        '_ui-src/js/unix-converter.js'
+
                         
                     ],
                     '_ui/js/vendor.js' : [
