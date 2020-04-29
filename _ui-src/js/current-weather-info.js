@@ -2,6 +2,7 @@ var WEATHER = WEATHER ? WEATHER : {};
 
 WEATHER.info = {
     $cityValue : "",
+
     bindSearchOnClick: function () {
         $('.search-city-btn').on('click', function () {
             WEATHER.info.$cityValue = $('.search-city-name').val();

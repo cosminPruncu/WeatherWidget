@@ -2,6 +2,7 @@ var WEATHER = WEATHER ? WEATHER : {};
 
 WEATHER.info = {
     $cityValue : "",
+
     bindSearchOnClick: function () {
         $('.search-city-btn').on('click', function () {
             WEATHER.info.$cityValue = $('.search-city-name').val();
@@ -107,5 +108,28 @@ WEATHER.converter = {
         var minutes = "0" + date.getMinutes();
         return hour.substr(-2) + ':' + minutes.substr(-2);
     }
+};var WEATHER = WEATHER ? WEATHER : {};
+
+WEATHER.city = {
+    city_list: [],
+    getCityList: function () {
+        $.getJSON('_ui-src/js/city.list.json', function (data) {
+            $.each(data, function (key) {
+                WEATHER.city.city_list.push(data[key].name);
+            })
+        });
+    },
+
+    cityAutocomplete: function () {
+        $(".search-city-name").autocomplete({
+            source: WEATHER.city.city_list,
+            minLength: 3
+        });
+    }
 }
+
+$(document).ready(function () {
+    WEATHER.city.getCityList();
+    WEATHER.city.cityAutocomplete();
+});
 //# sourceMappingURL=main.js.map
